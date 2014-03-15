@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+
+# Configs...
+*hibernate.cfg.xml
+*src/hibernate.cfg.xml
