@@ -1,0 +1,4 @@
+hnq
+===
+
+Hibernate NamedQuery
