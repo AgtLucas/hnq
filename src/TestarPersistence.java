@@ -9,6 +9,9 @@ import gov.nsa.mi6.User;
 import gov.nsa.mi6.UserDAO;
 import gov.nsa.mi6.Role;
 import gov.nsa.mi6.RoleDAO;
+import gov.nsa.mi6.UserRole;
+import gov.nsa.mi6.UserRoleDAO;
+import java.util.List;
 
 /**
  *
@@ -23,9 +26,14 @@ public class TestarPersistence {
         
        try {
 //           createUsers();
-           showAllUser();
+//           showAllUser();
+           
+//           createRoles();
+//           showAllRoles();
+//           findRole();
+           assigningRoleToUser();
        } catch (Exception ex) {
-           System.out.println("The system has failed! Kick the chair!" + ex.getMessage());
+           System.out.println("The system has failed! Kick the chair! " + ex.getMessage());
        }
         
     }
@@ -43,7 +51,7 @@ public class TestarPersistence {
             dao.create(bourne);
             dao.create(cross);
             
-            System.out.print("Users created!");
+            System.out.println("Users created!");
         }
     
     // Show all Users
@@ -63,6 +71,23 @@ public class TestarPersistence {
         
     }
     
+    // Show all roles
+    private static void showAllRoles() throws Exception {
+        RoleDAO dao = new RoleDAO();
+        ArrayList users = (ArrayList) dao.findAll();
+        Role o;
+        
+        System.out.println("Listing roles...");
+        
+        for (int i = 0; i < users.size(); i++) {
+            o = (Role) users.get(i);
+            System.out.println("ID: " + o.getId() + " - " + "Role: " + o.getName());
+        }
+        
+        Role admin = (Role) dao.getNewInstance();
+        
+    }
+    
     // Create Roles
     private static void createRoles() throws Exception {
         
@@ -78,6 +103,44 @@ public class TestarPersistence {
         dao.create(r2);
         
         System.out.println("Roles created!");
+        
+    }
+    
+    // Assign role
+    private static void assigningRoleToUser() throws Exception {
+        
+        System.out.println("Assigning role to user");
+        UserDAO ud = new UserDAO();
+        RoleDAO rd = new RoleDAO();
+        
+        User user = (User) ud.findById(1);
+        Role role = (Role) rd.findById(2);
+        
+        UserRoleDAO urd = new UserRoleDAO();
+        UserRole admin = (UserRole) urd.getNewInstance();
+        admin.setRoleid(role.getId());
+        admin.setUserid(1);
+        urd.create(admin);
+        
+    }
+    
+    // Find role
+    private static void findRole() throws Exception {
+        
+        RoleDAO rd = new RoleDAO();
+        UserDAO ud = new UserDAO();
+        Role r = (Role) rd.findById(1);
+        System.out.println(r.getName());
+        
+        List<UserRole> ur = rd.findUser(r);
+        UserRole o;
+        User user = new User();
+        System.out.println("Users with role " + r.getName()+ ": ");
+        for (int i = 0; i < ur.size(); i++) {
+            o = (UserRole) ur.get(i);
+            user = (User) ud.findById(o.getRoleid());
+            System.out.println(i +" - " + user.getName());
+        }
         
     }
 }
