@@ -30,21 +30,23 @@ public class TestarPersistence {
         
     }
     
+    // Create Users
     private static void createUsers() throws Exception {
             System.out.println("Creating users...");
             UserDAO dao = new UserDAO();
-            User admin = (User) dao.getNewInstance();
-            admin.setName("Admin");
+            User bourne = (User) dao.getNewInstance();
+            bourne.setName("Jason Bourne");
             
-            User chief = (User) dao.getNewInstance();
-            chief.setName("Chief");
+            User cross = (User) dao.getNewInstance();
+            cross.setName("Aaron Cross");
             
-            dao.create(admin);
-            dao.create(chief);
+            dao.create(bourne);
+            dao.create(cross);
             
             System.out.print("OK!");
         }
     
+    // Show all Users
     private static void showAllUser() throws Exception {
         
         System.out.println("Users...");
@@ -58,6 +60,16 @@ public class TestarPersistence {
         }
         
         User admin = (User) dao.getNewInstance();
+        
+    }
+    
+    // Create Roles
+    private static void createRoles() throws Exception {
+        
+        System.out.println("Stand by, creating roles...");
+        RoleDAO dao = new RoleDAO();
+        Role r1 = (Role) dao.getNewInstance();
+        r1.setName("");
         
     }
 }
