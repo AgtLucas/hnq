@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface IRoleDAO extends IDAO {
     
-    List findUser(Role r);
+    List<User> findUser(Role r) throws Exception;
     
 }
