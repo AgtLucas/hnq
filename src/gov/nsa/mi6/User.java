@@ -17,12 +17,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "User")
 @NamedQueries({
-    @NamedQuery(name = "User.id.equals", query = "SELECT o FROM User o WHERE o.id=:id"),
-    @NamedQuery(name = "User.name.equals", query = "SELECT o FROM User o WHERE o.name=:name"),
-    @NamedQuery(name = "User.find.all", query = "SELECT o FROM User o"),
-    @NamedQuery(name = "User.count.all", query = "SELECT COUNT(o.id) FROM User o"),
-    @NamedQuery(name = "User.remove.all", query = "DELETE FROM User o"),
-    @NamedQuery(name = "User.find.range", query = "SELECT o FROM User o WHERE o.id BETWEEN :minId AND :maxId")
+    @NamedQuery(name = "user.id.equals", query = "SELECT o FROM User o WHERE o.id=:id"),
+    @NamedQuery(name = "user.name.equals", query = "SELECT o FROM User o WHERE o.name=:name"),
+    @NamedQuery(name = "user.find.all", query = "SELECT o FROM User o"),
+    @NamedQuery(name = "user.count.all", query = "SELECT COUNT(o.id) FROM User o"),
+    @NamedQuery(name = "user.remove.all", query = "DELETE FROM User o"),
+    @NamedQuery(name = "user.find.range", query = "SELECT o FROM User o WHERE o.id BETWEEN :minId AND :maxId")
 })
 
 public class User implements Serializable {

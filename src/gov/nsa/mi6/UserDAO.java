@@ -52,10 +52,16 @@ public class UserDAO extends AbstractDAO {
     }
     
     protected String getNamedQueryToFindRoles() {
-        return "Role.find.rolesUser";
+        return "role.find.rolesUser";
     }
     
+    protected String getNamedQueryToHasRole() {
+        return "user.has.role";
+    }
+    
+    // Find roles
     public List<UserRole> findRoles(User user) throws Exception {
+        
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -69,6 +75,32 @@ public class UserDAO extends AbstractDAO {
         } finally {
             releaseSession(session);
         }
+        
     }
     
+    // Has role?
+    public boolean hasRole(Role role, User user) throws Exception {
+        
+        try {
+            boolean itHasRole = false;
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.getNamedQuery(getNamedQueryToHasRole());
+            q.setString("user", Integer.toString(user.getId()));
+            q.setString("role", Integer.toString(role.getId()));
+            List lt = q.list();
+            session.getTransaction().commit();
+            
+            if (lt.size() > 0) {
+                itHasRole = true;
+            }
+            
+            return itHasRole;
+        } catch (HibernateException e) {
+            throw new Exception(e.getCause().getLocalizedMessage());
+        } finally {
+            releaseSession(session);
+        }
+        
+    }
 }

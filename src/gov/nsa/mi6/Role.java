@@ -24,12 +24,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Role")
 @NamedQueries({
-    @NamedQuery(name = "Role.id.equals", query = "SELECT o FROM Role o WHERE o.id=:id"),
-    @NamedQuery(name = "Role.name.equals", query = "SELECT o FROM Role o WHERE o.name=:name"),
-    @NamedQuery(name = "Role.find.all", query = "SELECT o from Role o"),
-    @NamedQuery(name = "Role.count.all", query = "SELECT COUNT (o.id) FROM Role o"),
-    @NamedQuery(name = "Role.remove.all", query = "DELETE FROM Role o"),
-    @NamedQuery(name = "Role.find.range", query = "SELECT o FROM Role o WHERE o.id BETWEEN :minId and :maxId")
+    @NamedQuery(name = "role.id.equals", query = "SELECT o FROM Role o WHERE o.id=:id"),
+    @NamedQuery(name = "role.name.equals", query = "SELECT o FROM Role o WHERE o.name=:name"),
+    @NamedQuery(name = "role.find.all", query = "SELECT o from Role o"),
+    @NamedQuery(name = "role.count.all", query = "SELECT COUNT (o.id) FROM Role o"),
+    @NamedQuery(name = "role.remove.all", query = "DELETE FROM Role o"),
+    @NamedQuery(name = "role.find.range", query = "SELECT o FROM Role o WHERE o.id BETWEEN :minId and :maxId")
 })
 
 
