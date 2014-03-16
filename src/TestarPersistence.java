@@ -22,8 +22,8 @@ public class TestarPersistence {
     public static void main(String[] args) {
         
        try {
-           createUsers();
-//           showAllUser();
+//           createUsers();
+           showAllUser();
        } catch (Exception ex) {
            System.out.println("The system has failed! Kick the chair!" + ex.getMessage());
        }
@@ -45,7 +45,7 @@ public class TestarPersistence {
             System.out.print("OK!");
         }
     
-    /*private static void showAllUser() throws Exception {
+    private static void showAllUser() throws Exception {
         
         System.out.println("Users...");
         UserDAO dao = new UserDAO();
@@ -54,10 +54,10 @@ public class TestarPersistence {
         
         for (int i = 0; i < users.size(); i++) {
             o = (User) users.get(i);
-            System.out.println(0);
+            System.out.println("ID: " + o.getId() + " - " + "Name: " + o.getName());
         }
         
         User admin = (User) dao.getNewInstance();
         
-    }*/
+    }
 }
