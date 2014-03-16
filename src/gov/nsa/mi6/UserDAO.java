@@ -59,6 +59,10 @@ public class UserDAO extends AbstractDAO {
         return "user.has.role";
     }
     
+    protected String getNamedQueryToRemoveRoleUser() {
+        return "user.remove.role";
+    }
+    
     // Find roles
     public List<UserRole> findRoles(User user) throws Exception {
         
@@ -96,6 +100,21 @@ public class UserDAO extends AbstractDAO {
             }
             
             return itHasRole;
+        } catch (HibernateException e) {
+            throw new Exception(e.getCause().getLocalizedMessage());
+        } finally {
+            releaseSession(session);
+        }
+        
+    }
+    
+    public void removeRole(User user, Role role) throws Exception {
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query q = session.getNamedQuery(getNamedQueryToRemoveRoleUser());
+            q.setString("role", Integer.toString(role.getId()));
+            q.executeUpdate();
         } catch (HibernateException e) {
             throw new Exception(e.getCause().getLocalizedMessage());
         } finally {
