@@ -71,6 +71,26 @@ public class TestarPersistence {
         
     }
     
+    // Find user
+    private static void findUser() throws Exception {
+        
+        RoleDAO rd = new RoleDAO();
+        UserDAO ud = new UserDAO();
+        User user = (User) ud.findById(1);
+        List<UserRole> ur = ud.findRoles(user);
+        UserRole o;
+        Role role;
+        System.out.println("User's roles " + user.getName() + ": ");
+        for (int i = 0; i < ur.size(); i++) {
+            o = (UserRole) ur.get(i);
+            System.out.println(o);
+            role = (Role) rd.findById(o.getRoleid());
+            System.out.println(i + " - " + role.getName());
+        }
+        
+        
+    }
+    
     // Show all roles
     private static void showAllRoles() throws Exception {
         RoleDAO dao = new RoleDAO();
@@ -143,4 +163,28 @@ public class TestarPersistence {
         }
         
     }
+    
+    // Remove role
+    private static void removeRole() throws Exception {
+        UserDAO ud = new UserDAO();
+        RoleDAO rd = new RoleDAO();
+        Role role = (Role) rd.findById(2);
+        User user = (User) ud.findById(2);
+        ud.removeRole(user, role);
+    }
+    
+    // Has role?
+    private static void hasRole() throws Exception {
+        UserDAO ud = new UserDAO();
+        RoleDAO rd = new RoleDAO();
+        Role role = (Role) rd.findById(2);
+        User user = (User) ud.findById(2);
+        boolean itHasRole = ud.hasRole(role, user);
+        if (itHasRole == true) {
+            System.out.println("Yep! :)");
+        } else {
+            System.out.println("Nop! :(");
+        }
+    }
+    
 }
