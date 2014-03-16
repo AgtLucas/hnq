@@ -108,6 +108,7 @@ public class UserDAO extends AbstractDAO {
         
     }
     
+    // Remove role
     public void removeRole(User user, Role role) throws Exception {
         
         try {

@@ -6,6 +6,10 @@
 
 package gov.nsa.mi6;
 
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+
 /**
  *
  * @author lucas.silva
@@ -45,6 +49,29 @@ public class RoleDAO extends AbstractDAO {
     @Override
     public Object getNewInstance() {
         return new Role();
+    }
+    
+    protected String getNamedQueryToFindUser() {
+        return "role.find.user";
+    }
+    
+    // Find user
+    public List<UserRole> findUser(Role role) throws Exception {
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.getNamedQuery(getNamedQueryToFindUser());
+            q.setString("role", Integer.toString(role.getId()));
+            List lt = q.list();
+            session.getTransaction().commit();
+            return lt;
+        } catch (HibernateException e) {
+            throw new Exception(e.getCause().getLocalizedMessage());
+        } finally {
+            releaseSession(session);
+        }
+        
     }
     
     
