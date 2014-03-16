@@ -43,7 +43,7 @@ public class TestarPersistence {
             dao.create(bourne);
             dao.create(cross);
             
-            System.out.print("OK!");
+            System.out.print("Users created!");
         }
     
     // Show all Users
@@ -69,7 +69,15 @@ public class TestarPersistence {
         System.out.println("Stand by, creating roles...");
         RoleDAO dao = new RoleDAO();
         Role r1 = (Role) dao.getNewInstance();
-        r1.setName("");
+        r1.setName("Spy");
+        
+        Role r2 = (Role) dao.getNewInstance();
+        r2.setName("Recon");
+        
+        dao.create(r1);
+        dao.create(r2);
+        
+        System.out.println("Roles created!");
         
     }
 }
