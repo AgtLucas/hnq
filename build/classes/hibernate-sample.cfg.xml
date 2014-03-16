@@ -20,5 +20,6 @@
     <!-- Mapping files -->
     <mapping class="gov.nsa.mi6.User"/>
     <mapping class="gov.nsa.mi6.Role"/>
+    <mapping class="gov.nsa.mi6.UserRole"/>
   </session-factory>
 </hibernate-configuration>
