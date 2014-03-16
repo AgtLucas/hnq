@@ -23,7 +23,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="userrole")
 @NamedQueries({
-    
+    @NamedQuery(name = "userrole.id.equals", query = "SELECT o FROM userrole o WHERE o.roleid=:roleid"),
+    @NamedQuery(name = "userrole.name.equals", query = "SELECT o FROM userrole o WHERE o.roleid=:roleid"),
+    @NamedQuery(name = "userrole.find.all", query = "SELECT o FROM userrole o"),
+    @NamedQuery(name = "userrole.count.all", query = "SELECT COUNT(o.roleid) FROM userrole o"),
+    @NamedQuery(name = "userrole.remove.all", query = "DELETE FROM userrole o"),
+    @NamedQuery(name = "userrole.find.range", query = "SELECT o FROM userrole o WHERE o.roleid BETWEEN :minId and :maxId")
 })
 public class UserRole implements Serializable {
     
