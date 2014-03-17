@@ -15,13 +15,16 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author lucas.silva
  */
 @Entity
-@Table(name="UserRole")
+@Table(name="UserRole", uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"userid", "roleid"})}
+)
 @NamedQueries({
     @NamedQuery(name = "UserRole.id.equals", query = "SELECT o FROM UserRole o WHERE o.roleid=:roleid"),
     @NamedQuery(name = "UserRole.name.equals", query = "SELECT o FROM UserRole o WHERE o.roleid=:roleid"),

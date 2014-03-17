@@ -25,13 +25,13 @@ public class TestarPersistence {
     public static void main(String[] args) {
         
        try {
-//           createUsers();
+           createUsers();
 //           showAllUser();
            
 //           createRoles();
 //           showAllRoles();
 //           findRole();
-           assigningRoleToUser();
+//           assigningRoleToUser();
        } catch (Exception ex) {
            System.out.println("The system has failed! Kick the chair! " + ex.getMessage());
        }
@@ -42,6 +42,8 @@ public class TestarPersistence {
     private static void createUsers() throws Exception {
             System.out.println("Creating users...");
             UserDAO dao = new UserDAO();
+            dao.removeAll();
+            
             User bourne = (User) dao.getNewInstance();
             bourne.setName("Jason Bourne");
             
@@ -113,6 +115,7 @@ public class TestarPersistence {
         
         System.out.println("Stand by, creating roles...");
         RoleDAO dao = new RoleDAO();
+        dao.removeAll();
         Role r1 = (Role) dao.getNewInstance();
         r1.setName("Spy");
         
@@ -186,5 +189,38 @@ public class TestarPersistence {
             System.out.println("Nop! :(");
         }
     }
+    
+    /*private static void createUsersRoles() throws Exception {
+        RoleDAO rd = new RoleDAO();
+        UserDAO ud = new UserDAO();
+        UserRoleDAO urd = new UserRoleDAO();
+        
+        rd.removeAll();
+        ud.removeAll();
+
+        Role role1 = new Role();
+        role1.setName("Role1");
+        rd.save(role1);
+
+        User user1 = new User();
+        user1.setName("Usuer1");
+        ud.save(user1);
+
+        UserRole userrole1 = new UserRole();
+        userrole1.setRoleid(role1.getId());
+        userrole1.setUserid(user1.getId());
+        urd.save(userrole1);
+
+        Role role2 = new Role();
+        role2.setName("Role2");
+        rd.save(role2);
+
+        urd.addRole(user1, role2);
+
+        findRole(role2);
+        
+        System.out.println("OK!");
+    }*/
+    
     
 }
