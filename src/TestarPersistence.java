@@ -35,6 +35,7 @@ public class TestarPersistence {
 //           showAllRoles();
 //           findRole();
            assigningRoleToUser(u, r);
+//           findUser(r);
 //           createUsersRoles();
        } catch (Exception ex) {
            System.out.println("The system has failed! Kick the chair! " + ex.getMessage());
@@ -80,20 +81,21 @@ public class TestarPersistence {
     }
     
     // Find user
-    private static void findUser() throws Exception {
+    private static void findUser(Role r) throws Exception {
         
         RoleDAO rd = new RoleDAO();
-        UserDAO ud = new UserDAO();
-        User user = (User) ud.findById(1);
-        List<UserRole> ur = ud.findRoles(user);
-        UserRole o;
-        Role role;
-        System.out.println("User's roles " + user.getName() + ": ");
+//        UserDAO ud = new UserDAO();
+//        User user = (User) ud.findById(u.getId());
+        List<User> ur = rd.findUser(r);
+//        UserRole o;
+//        Role role;
+        System.out.println("User's roles " + r.getName() + ": ");
+        User u;
         for (int i = 0; i < ur.size(); i++) {
-            o = (UserRole) ur.get(i);
-            System.out.println(o);
-            role = (Role) rd.findById(o.getRoleid());
-            System.out.println(i + " - " + role.getName());
+            u = (User) ur.get(i);
+            System.out.println(u);
+//            role = (Role) rd.findById(o.getRoleid());
+//            System.out.println(i + " - " + role.getName());
         }
         
         
@@ -156,24 +158,24 @@ public class TestarPersistence {
     }
     
     // Find role
-    private static void findRole() throws Exception {
-        
-        RoleDAO rd = new RoleDAO();
-        UserDAO ud = new UserDAO();
-        Role r = (Role) rd.findById(1);
-        System.out.println(r.getName());
-        
-        List<UserRole> ur = rd.findUser(r);
-        UserRole o;
-        User user = new User();
-        System.out.println("Users with role " + r.getName()+ ": ");
-        for (int i = 0; i < ur.size(); i++) {
-            o = (UserRole) ur.get(i);
-            user = (User) ud.findById(o.getRoleid());
-            System.out.println(i +" - " + user.getName());
-        }
-        
-    }
+//    private static void findRole() throws Exception {
+//        
+//        RoleDAO rd = new RoleDAO();
+//        UserDAO ud = new UserDAO();
+//        Role r = (Role) rd.findById(1);
+//        System.out.println(r.getName());
+//        
+//        List<UserRole> ur = rd.findUser(r);
+//        UserRole o;
+//        User user = new User();
+//        System.out.println("Users with role " + r.getName()+ ": ");
+//        for (int i = 0; i < ur.size(); i++) {
+//            o = (UserRole) ur.get(i);
+//            user = (User) ud.findById(o.getRoleid());
+//            System.out.println(i +" - " + user.getName());
+//        }
+//        
+//    }
     
     // Remove role
     private static void removeRole() throws Exception {

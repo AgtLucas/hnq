@@ -56,13 +56,13 @@ public class RoleDAO extends AbstractDAO {
     }
     
     // Find user
-    public List<UserRole> findUser(Role role) throws Exception {
+    public List<User> findUser(Role role) throws Exception {
         
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Query q = session.getNamedQuery(getNamedQueryToFindUser());
-            q.setString("role", Integer.toString(role.getId()));
+            q.setInteger("role", (role.getId()));
             List lt = q.list();
             session.getTransaction().commit();
             return lt;

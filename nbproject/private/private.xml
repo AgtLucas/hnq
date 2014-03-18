@@ -5,8 +5,11 @@
         <group>
             <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/gov/nsa/mi6/Role.java</file>
             <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/hibernate.cfg.xml</file>
+            <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/gov/nsa/mi6/User.java</file>
             <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/gov/nsa/mi6/UserRole.java</file>
+            <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/gov/nsa/mi6/RoleDAO.java</file>
             <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/TestarPersistence.java</file>
+            <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/gov/nsa/mi6/UserRoleDAO.java</file>
             <file>file:/Users/AgtLucas/NetBeansProjects/McLaren/src/gov/nsa/mi6/AbstractDAO.java</file>
         </group>
     </open-files>
