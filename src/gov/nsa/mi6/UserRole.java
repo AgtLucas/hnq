@@ -39,9 +39,9 @@ public class UserRole implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "userid")
+    @Column(name = "userid", nullable = false)
     private int userid;
-    @Column(name = "roleid")
+    @Column(name = "roleid", nullable = false)
     private int roleid;
 
     public UserRole() {

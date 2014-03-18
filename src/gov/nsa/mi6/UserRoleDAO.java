@@ -46,6 +46,10 @@ public class UserRoleDAO extends AbstractDAO {
     public Object getNewInstance() {
         return new UserRole();
     }
+
+    public void addRole(User user1, Role role2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

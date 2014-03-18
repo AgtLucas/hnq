@@ -23,15 +23,19 @@ public class TestarPersistence {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
        try {
-           createUsers();
+           UserDAO wtf = new UserDAO();
+           wtf.removeAll();
+           RoleDAO wth = new RoleDAO();
+           wth.removeAll();
+           User u = createUsers();
 //           showAllUser();
            
-//           createRoles();
+           Role r = createRoles();
 //           showAllRoles();
 //           findRole();
-//           assigningRoleToUser();
+           assigningRoleToUser(u, r);
+//           createUsersRoles();
        } catch (Exception ex) {
            System.out.println("The system has failed! Kick the chair! " + ex.getMessage());
        }
@@ -39,7 +43,7 @@ public class TestarPersistence {
     }
     
     // Create Users
-    private static void createUsers() throws Exception {
+    private static User createUsers() throws Exception {
             System.out.println("Creating users...");
             UserDAO dao = new UserDAO();
             dao.removeAll();
@@ -47,13 +51,15 @@ public class TestarPersistence {
             User bourne = (User) dao.getNewInstance();
             bourne.setName("Jason Bourne");
             
-            User cross = (User) dao.getNewInstance();
-            cross.setName("Aaron Cross");
-            
+//            User cross = (User) dao.getNewInstance();
+//            cross.setName("Aaron Cross");
+//            
             dao.create(bourne);
-            dao.create(cross);
+//            dao.create(cross);
             
             System.out.println("Users created!");
+            
+            return bourne;
         }
     
     // Show all Users
@@ -111,38 +117,40 @@ public class TestarPersistence {
     }
     
     // Create Roles
-    private static void createRoles() throws Exception {
+    private static Role createRoles() throws Exception {
         
         System.out.println("Stand by, creating roles...");
         RoleDAO dao = new RoleDAO();
-        dao.removeAll();
+//        dao.removeAll();
         Role r1 = (Role) dao.getNewInstance();
         r1.setName("Spy");
         
-        Role r2 = (Role) dao.getNewInstance();
-        r2.setName("Recon");
+//        Role r2 = (Role) dao.getNewInstance();
+//        r2.setName("Recon");
         
         dao.create(r1);
-        dao.create(r2);
+//        dao.create(r2);
         
         System.out.println("Roles created!");
+        
+        return r1;
         
     }
     
     // Assign role
-    private static void assigningRoleToUser() throws Exception {
+    private static void assigningRoleToUser(User user, Role role) throws Exception {
         
         System.out.println("Assigning role to user");
-        UserDAO ud = new UserDAO();
-        RoleDAO rd = new RoleDAO();
+//        UserDAO ud = new UserDAO();
+//        RoleDAO rd = new RoleDAO();
         
-        User user = (User) ud.findById(1);
-        Role role = (Role) rd.findById(2);
+//        User user = (User) ud.findById(1);
+//        Role role = (Role) rd.findById(2);
         
         UserRoleDAO urd = new UserRoleDAO();
         UserRole admin = (UserRole) urd.getNewInstance();
         admin.setRoleid(role.getId());
-        admin.setUserid(1);
+        admin.setUserid(user.getId());
         urd.create(admin);
         
     }
@@ -189,38 +197,5 @@ public class TestarPersistence {
             System.out.println("Nop! :(");
         }
     }
-    
-    /*private static void createUsersRoles() throws Exception {
-        RoleDAO rd = new RoleDAO();
-        UserDAO ud = new UserDAO();
-        UserRoleDAO urd = new UserRoleDAO();
-        
-        rd.removeAll();
-        ud.removeAll();
-
-        Role role1 = new Role();
-        role1.setName("Role1");
-        rd.save(role1);
-
-        User user1 = new User();
-        user1.setName("Usuer1");
-        ud.save(user1);
-
-        UserRole userrole1 = new UserRole();
-        userrole1.setRoleid(role1.getId());
-        userrole1.setUserid(user1.getId());
-        urd.save(userrole1);
-
-        Role role2 = new Role();
-        role2.setName("Role2");
-        rd.save(role2);
-
-        urd.addRole(user1, role2);
-
-        findRole(role2);
-        
-        System.out.println("OK!");
-    }*/
-    
     
 }
